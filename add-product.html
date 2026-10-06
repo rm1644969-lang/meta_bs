@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product / Meta AI Logs — RTN BACKUP GROUP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/meta-ai-logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff1e42">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body data-page="add-product">
+
+  <div class="page" style="max-width: 860px">
+    <div class="page-head">
+      <div class="flex jb ac" style="flex-wrap:wrap; gap:12px;">
+        <div>
+          <div class="flex ac gap8 mb8">
+            <span class="delivery-live-tag"><span class="delivery-live-dot"></span> ⚡ Instant Auto-Live (সরাসরি লাইভ)</span>
+            <span class="badge blue no-dot">সহজ সেলার পোর্টাল</span>
+          </div>
+          <h1 style="font-size:26px;">খুব সহজে Meta AI অ্যাকাউন্ট যুক্ত করুন</h1>
+          <p>রেট নির্বাচন করুন, আপনার সেলার নাম ও হোয়াটসঅ্যাপ দিন এবং অ্যাকাউন্ট পেস্ট করলেই সাথে সাথে মার্কেটপ্লেসে লাইভ হয়ে যাবে!</p>
+        </div>
+        <a href="index.html" class="btn btn-outline">← ক্যাটালগ দেখুন</a>
+      </div>
+    </div>
+
+    <form class="card glow-card" id="productForm" style="padding:24px;">
+      <!-- STEP 1: RATE TIER -->
+      <div class="field full mb20">
+        <label style="font-size:15px; font-weight:800; color:var(--text); display:flex; align-items:center; gap:8px;">
+          <span style="display:inline-grid; place-items:center; width:26px; height:26px; border-radius:50%; background:var(--meta-pink); color:#fff; font-size:13px;">১</span>
+          রেট ও ক্যাটাগরি নির্বাচন করুন (Select Rate Tier) <span class="req">*</span>
+        </label>
+        
+        <input type="hidden" name="price" id="priceInput" value="0.30">
+        <input type="hidden" name="warrantyType" id="warrantyInput" value="noreplace">
+        <input type="hidden" name="category" value="meta-ai">
+        
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px; margin-top:10px;" id="tierGrid">
+          <!-- Tier 1: 0.30 No Replace -->
+          <div class="card tier-card on" data-price="0.30" data-tier="noreplace" id="tierCard30" style="padding:16px; cursor:pointer; border:2px solid var(--meta-pink); background:var(--surface-2); border-radius:12px;">
+            <div class="flex jb ac">
+              <span class="badge amber no-dot" style="font-size:11px;">Wholesale Budget</span>
+              <b style="font-size:20px; color:var(--amber);">৳0.30 <small class="dim fs11">/unit</small></b>
+            </div>
+            <div class="fw800 mt8" style="font-size:15px; color:var(--text);">Meta AI .30 (No Replace)</div>
+            <div class="fs12 dim mt4" style="line-height:1.5;">কেনার পর আইডি নষ্ট বা ব্যান দিলে নো রিপ্লেস (Strictly No Replace)। বাজেট ইউজারদের জন্য।</div>
+          </div>
+
+          <!-- Tier 2: 0.40 With Replace -->
+          <div class="card tier-card" data-price="0.40" data-tier="replace" id="tierCard40" style="padding:16px; cursor:pointer; border:1px solid var(--border); background:var(--surface-2); border-radius:12px;">
+            <div class="flex jb ac">
+              <span class="badge green no-dot" style="font-size:11px;">✓ 24h Guarantee</span>
+              <b style="font-size:20px; color:var(--green);">৳0.40 <small class="dim fs11">/unit</small></b>
+            </div>
+            <div class="fw800 mt8" style="font-size:15px; color:var(--text);">Meta AI .40 (With Replace)</div>
+            <div class="fs12 dim mt4" style="line-height:1.5;">২৪ ঘণ্টা সম্পূর্ণ রিপ্লেসমেন্ট গ্যারান্টি। কোনো অ্যাকাউন্টে সমস্যা হলে সাথে সাথে রিপ্লেস দেওয়া হবে।</div>
+          </div>
+
+          <!-- Tier 3: 0.45 Admin Exclusive -->
+          <div class="card tier-card" data-price="0.45" data-tier="admin045" id="tierCard45" style="padding:16px; cursor:pointer; border:1px solid var(--border); background:var(--surface-2); border-radius:12px; position:relative;">
+            <div class="flex jb ac">
+              <span class="badge pink no-dot" style="font-size:11px;">👑 Admin Only</span>
+              <b style="font-size:20px; color:var(--meta-pink);">৳0.45 <small class="dim fs11">/unit</small></b>
+            </div>
+            <div class="fw800 mt8" style="font-size:15px; color:var(--text);">⭐ Admin Meta .45 (Exclusive)</div>
+            <div class="fs12 dim mt4" style="line-height:1.5;">🔒 এই প্রোডাক্টে শুধুমাত্র অ্যাডমিন সরাসরি স্টক যোগ করতে পারেন। ফ্রেশ কুকিজ ও রেসিডেন্সিয়াল আইপি।</div>
+          </div>
+
+          <!-- Tier 4: 0.45 Horjin Origin -->
+          <div class="card tier-card" data-price="0.45" data-tier="horjin" id="tierCard50" style="padding:16px; cursor:pointer; border:1px solid var(--border); background:var(--surface-2); border-radius:12px;">
+            <div class="flex jb ac">
+              <span class="badge cyan no-dot" style="font-size:11px;">💎 Clean IP VIP</span>
+              <b style="font-size:20px; color:var(--cyan);">৳0.45 <small class="dim fs11">/unit</small></b>
+            </div>
+            <div class="fw800 mt8" style="font-size:15px; color:var(--text);">Meta AI Horjin .45 (Original)</div>
+            <div class="fs12 dim mt4" style="line-height:1.5;">১০০% অরজিনাল ক্লিন আবাসিক আইপি Meta AI। সর্বোচ্চ স্থায়িত্ব এবং জিরো চেকপয়েন্ট।</div>
+          </div>
+        </div>
+
+        <!-- Admin 0.45 Security Password Box -->
+        <div id="adminPassBox" style="display:none; margin-top:14px; background:rgba(255, 30, 66, 0.08); border:1px dashed var(--meta-pink); border-radius:10px; padding:12px 16px;">
+          <div class="flex ac gap8 mb6">
+            <span style="font-size:18px;">🔒</span>
+            <b style="color:var(--meta-pink); font-size:13.5px;">Admin Meta .45 অথেন্টিকেশন (Admin Only Verification)</b>
+          </div>
+          <p class="fs12 dim mb8">এই প্রোডাক্টে শুধুমাত্র অ্যাডমিন স্টক যোগ করতে পারবেন। অনুগ্রহ করে অ্যাডমিন পাসওয়ার্ড দিন:</p>
+          <div class="flex gap8" style="max-width:380px;">
+            <input type="password" name="adminPassword" id="adminPasswordInput" class="input" placeholder="অ্যাডমিন পাসওয়ার্ড লিখুন..." style="background:var(--surface-2); color:var(--text);">
+            <span class="badge green no-dot flex ac" id="adminAuthStatus" style="display:none; white-space:nowrap;">✓ Verified</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider mb20">
+
+      <!-- STEP 2: SELLER IDENTITY -->
+      <div class="field full mb20">
+        <label style="font-size:15px; font-weight:800; color:var(--text); display:flex; align-items:center; gap:8px;">
+          <span style="display:inline-grid; place-items:center; width:26px; height:26px; border-radius:50%; background:var(--meta-violet); color:#fff; font-size:13px;">২</span>
+          আপনার সেলার বা দোকানের নাম এবং হোয়াটসঅ্যাপ (Seller Identity) <span class="req">*</span>
+        </label>
+        <p class="fs12 dim mt4 mb10">আপনার দেওয়া নামেই মার্কেটপ্লেসে পণ্য কার্ড প্রদর্শিত হবে (সবগুলোতে আর RTN দেখাবে না)।</p>
+        
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px;">
+          <div>
+            <label class="fs13 fw600" style="color:var(--text-2);">দোকান / সেলারের নাম (Your Seller/Shop Name) <span class="req">*</span></label>
+            <input class="input mt4" name="sellerName" id="sellerNameInput" placeholder="যেমন: Shanto Tech / Tanvir AI / Rafi Store" required>
+            <div class="fs11 dim mt4">আপনার নিজের নাম বা ব্র্যান্ডের নাম দিন</div>
+          </div>
+          <div>
+            <label class="fs13 fw600" style="color:var(--text-2);">হোয়াটসঅ্যাপ নাম্বার (Your WhatsApp Number) <span class="req">*</span></label>
+            <input class="input mt4" name="sellerWhatsapp" id="sellerWhatsappInput" placeholder="যেমন: 017XXXXXXXX" required>
+            <div class="fs11 dim mt4">ক্রেতা সাপোর্ট বা যোগাযোগের জন্য ব্যবহার হবে</div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider mb20">
+
+      <!-- STEP 3: ACCOUNTS POOL (PASTE OR UPLOAD) -->
+      <div class="field full mb20">
+        <div class="flex jb ac mb6">
+          <label style="font-size:15px; font-weight:800; color:var(--text); display:flex; align-items:center; gap:8px;">
+            <span style="display:inline-grid; place-items:center; width:26px; height:26px; border-radius:50%; background:var(--green); color:#000; font-size:13px;">৩</span>
+            অ্যাকাউন্ট বা লগ পেস্ট করুন (Paste Accounts / Cookies) <span class="req">*</span>
+          </label>
+          <span class="badge green no-dot" id="liveStockBadge" style="font-size:12px; font-weight:800;">🟢 ০ টি অ্যাকাউন্ট প্রস্তুত (Stock: 0)</span>
+        </div>
+        <p class="fs12 dim mb8">প্রতি লাইনে ১টি করে অ্যাকাউন্ট লিখুন (যেমন: email:pass:cookie)। ক্রেতা অর্ডার দিলে এখান থেকে স্বয়ংক্রিয়ভাবে একটি একটি করে ডেলিভারি হয়ে যাবে।</p>
+        
+        <textarea class="textarea mono" name="rawLogs" id="rawLogsArea" style="font-size:12.5px; height:130px; background:var(--surface-2); color:var(--text); border-color:var(--border);" placeholder="user01@outlook.com:Pass2026:COOKIE_SESS_01&#10;user02@outlook.com:Pass2026:COOKIE_SESS_02&#10;user03@outlook.com:Pass2026:COOKIE_SESS_03" required></textarea>
+
+        <!-- Fast File Alternative -->
+        <div class="flex ac jb mt10" style="flex-wrap:wrap; gap:10px; background:var(--surface-2); padding:10px 14px; border-radius:8px; border:1px solid var(--border);">
+          <div class="flex ac gap8 fs13 muted">
+            <span>📁 অথবা এক্সেল / টেক্সট ফাইল আপলোড করতে পারেন:</span>
+          </div>
+          <div class="flex ac gap8">
+            <button type="button" class="btn btn-outline btn-sm" id="uploadFileBtn">📄 Browse .TXT / .XLSX</button>
+            <input type="file" id="fileInput" accept=".xls,.xlsx,.csv,.txt" multiple hidden>
+            <span class="fs12 dim" id="fileNameLabel">কোনো ফাইল সিলেক্ট করা নেই</span>
+          </div>
+        </div>
+        <input type="hidden" name="stock" id="stockInput" value="0">
+      </div>
+
+      <!-- OPTIONAL ADVANCED CUSTOMIZATION -->
+      <details style="margin-bottom:20px; background:rgba(0,0,0,0.25); border:1px solid var(--border); border-radius:8px; padding:10px 14px;">
+        <summary style="cursor:pointer; font-weight:700; font-size:13px; color:var(--text-2);">⚙️ কাস্টম টাইটেল ও বিস্তারিত বিবরণ (ঐচ্ছিক - প্রয়োজন না হলে বাদ দিন)</summary>
+        <div class="mt12" style="display:grid; gap:12px;">
+          <div>
+            <label class="fs12 dim">প্রোডাক্ট টাইটেল (Auto-Generated):</label>
+            <input class="input mt4" name="title" id="titleInput" value="Meta AI Account 0.30 (No Replace / নো রিপ্লেস)">
+          </div>
+          <div>
+            <label class="fs12 dim">বিবরণ (Description):</label>
+            <textarea class="textarea mt4" name="description" id="descArea" style="height:60px;">100% Active Meta AI accounts with session cookies. সতর্কতা / WARNING: কেনার পর কোনো অ্যাকাউন্টে সমস্যা হলে বা ব্যান দিলে নো রিপ্লেস (Strictly No Replace)। নিজের দায়িত্বে কিনবেন।</textarea>
+          </div>
+        </div>
+      </details>
+
+      <div class="flex jb ac" style="flex-wrap:wrap; gap:12px; padding-top:14px; border-top:1px solid var(--border);">
+        <span class="dim fs13 flex ac gap6">
+          <span style="color:var(--amber)">⏳</span> সাবমিট করার পর অ্যাডমিন যাচাই করে অনুমোদন (Approve) করলে মার্কেটপ্লেসে লাইভ হবে
+        </span>
+        <div class="flex gap8">
+          <button type="button" class="btn btn-ghost" id="clearBtn">রিসেট (Clear)</button>
+          <button type="submit" class="btn btn-meta btn-lg" id="submitBtn" style="font-size:15px; padding:12px 28px;">
+            📩 অ্যাডমিন অনুমোদনের জন্য পাঠান (Submit for Approval)
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/add-product.js"></script>
+</body>
+</html>

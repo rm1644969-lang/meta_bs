@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — RTN BACKUP GROUP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/meta-ai-logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff1e42">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body data-page="dashboard">
+
+  <div class="page">
+    <div class="page-head row">
+      <div>
+        <h1 id="greetTitle">Marketplace Dashboard</h1>
+        <p id="greetSub">Welcome back — your Meta AI trading hub and balance overview.</p>
+      </div>
+      <div class="flex gap8">
+        <a href="wallet.html?tab=deposit" class="btn btn-outline">💰 Add Deposit (Min ৳50)</a>
+        <a href="add-product.html" class="btn btn-primary">＋ Add Product</a>
+      </div>
+    </div>
+
+    <div class="stats-grid" id="dashStats"></div>
+
+    <div class="grid-2">
+      <!-- Left: recent orders + transactions -->
+      <div>
+        <div class="card glow-card mb24">
+          <div class="card__head">
+            <div><h3>Recent Orders</h3><div class="sub">As both buyer and seller with auto-delivery status</div></div>
+            <a href="orders.html" class="btn btn-ghost btn-sm">View All →</a>
+          </div>
+          <div class="table-wrap"><table class="data" id="dashOrders"></table></div>
+        </div>
+
+        <div class="card glow-card">
+          <div class="card__head">
+            <div><h3>Latest Transactions</h3><div class="sub">Deposits, withdrawals, purchases & sales</div></div>
+            <a href="transactions.html" class="btn btn-ghost btn-sm">View All →</a>
+          </div>
+          <div class="table-wrap"><table class="data" id="dashTxns"></table></div>
+        </div>
+      </div>
+
+      <!-- Right: approval status + quick actions -->
+      <div>
+        <div class="card glow-card mb24">
+          <div class="card__head"><div><h3>Listing Approval Status</h3><div class="sub">Admin reviews listings before live deployment</div></div></div>
+          <div class="card__body" id="approvalBox"></div>
+        </div>
+
+        <div class="card glow-card mb24">
+          <div class="card__head"><div><h3>Quick Actions</h3></div></div>
+          <div class="card__body" style="display:grid; gap:10px;">
+            <a href="wallet.html?tab=deposit" class="card" style="padding:12px 16px; display:flex; align-items:center; gap:14px;">
+              <span style="font-size:24px">💰</span>
+              <div style="flex:1"><b>Add Deposit (DP)</b><div class="dim fs12">bKash 01609166109 · Nagad 01620576996 · Min ৳50</div></div>
+              <span style="color:var(--accent)">→</span>
+            </a>
+            <a href="add-product.html" class="card" style="padding:12px 16px; display:flex; align-items:center; gap:14px;">
+              <span style="font-size:24px">＋</span>
+              <div style="flex:1"><b>Sell Meta AI / Accounts</b><div class="dim fs12">Upload Excel (.xlsx) file for automated stock</div></div>
+              <span style="color:var(--accent)">→</span>
+            </a>
+            <a href="profile.html" class="card" style="padding:12px 16px; display:flex; align-items:center; gap:14px;">
+              <span style="font-size:24px">👤</span>
+              <div style="flex:1"><b>Edit Profile & Payments</b><div class="dim fs12">WhatsApp, bKash, Nagad, Binance</div></div>
+              <span style="color:var(--accent)">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="card glow-card">
+          <div class="card__head"><div><h3>My Recent Listings</h3></div></div>
+          <div class="card__body" id="dashProducts" style="display:flex; flex-direction:column; gap:12px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verified Seller Profiles Directory Section -->
+    <div class="card glow-card mt24" id="sellerProfilesSection">
+      <div class="card__head">
+        <div>
+          <div class="flex ac gap8 mb4">
+            <span class="badge cyan no-dot">✓ ভেরিফাইড সেলার পুল</span>
+            <span class="badge green no-dot">⚡ অটো ডেলিভারি সক্রিয়</span>
+          </div>
+          <h2 style="font-size:22px; font-weight:800; margin:0; color:var(--text);">👥 Verified Seller Profiles (সেলারদের প্রোফাইল ও স্টক)</h2>
+          <div class="sub">যেসব সেলাররা স্টক যুক্ত করেছেন তাদের প্রোফাইল, মোট স্টক ও রেটিং দেখুন — যেকোনো সেলারের প্রোফাইলে ক্লিক করে সরাসরি তাদের অ্যাকাউন্ট কিনতে পারবেন।</div>
+        </div>
+        <a href="add-product.html" class="btn btn-outline btn-sm">＋ পণ্য যোগ করুন (Add Stock)</a>
+      </div>
+      <div class="card__body">
+        <div class="seller-grid" id="dashSellerGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/dashboard.js"></script>
+</body>
+</html>

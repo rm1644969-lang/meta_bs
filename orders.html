@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders & Delivery — RTN BACKUP GROUP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/meta-ai-logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff1e42">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body data-page="orders">
+
+  <div class="page">
+    <div class="page-head row">
+      <div>
+        <h1>My Orders & Auto-Delivery</h1>
+        <p>Instant access to your purchased Meta AI logs, accounts, and escrow tracking.</p>
+      </div>
+      <a href="index.html" class="btn btn-primary">🛒 Browse Marketplace</a>
+    </div>
+
+    <div class="stats-grid" id="orderStats"></div>
+
+    <div class="tabs" id="roleTabs">
+      <button class="tab on" data-role="all">All Orders</button>
+      <button class="tab" data-role="buyer">🛍️ As Buyer</button>
+      <button class="tab" data-role="seller">💼 As Seller</button>
+    </div>
+
+    <div class="filter-bar" id="statusFilter">
+      <span class="pill on" data-s="">All Statuses</span>
+      <span class="pill" data-s="pending">Pending</span>
+      <span class="pill" data-s="processing">Processing</span>
+      <span class="pill" data-s="delivered">Delivered</span>
+      <span class="pill" data-s="refunded">Refunded</span>
+      <span class="pill" data-s="cancelled">Cancelled</span>
+    </div>
+
+    <div id="orderList" style="display:flex; flex-direction:column; gap:16px;"></div>
+    <div class="empty" id="orderEmpty" hidden>
+      <div class="e-ico">🧾</div>
+      <h4>No orders found</h4>
+      <p>Try switching the role or status filter above.</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/orders.js"></script>
+</body>
+</html>

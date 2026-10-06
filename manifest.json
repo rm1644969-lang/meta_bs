@@ -1,0 +1,33 @@
+{
+  "name": "RTN Meta AI Buy & Sell",
+  "short_name": "Meta AI BuySell",
+  "description": "Official RTN Backup Group Meta AI & Digital Assets Buy & Sell Marketplace",
+  "start_url": "./index.html",
+  "scope": "./",
+  "id": "rtn-meta-ai-marketplace-user",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#07080c",
+  "theme_color": "#ff1e42",
+  "categories": ["business", "shopping", "utilities"],
+  "icons": [
+    {
+      "src": "assets/meta-ai-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/meta-ai-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

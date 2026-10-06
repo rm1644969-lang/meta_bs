@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile & Payment Numbers — RTN BACKUP GROUP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/meta-ai-logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff1e42">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body data-page="profile">
+
+  <div class="page">
+    <div class="page-head">
+      <div class="flex ac gap8 mb8">
+        <span class="badge green no-dot">✓ RTN TRADING PROFILE</span>
+        <span class="badge cyan no-dot">🛡️ STRICT PRIVACY PROTECTED</span>
+      </div>
+      <h1>My Marketplace Profile (প্রোফাইল সেটিংস)</h1>
+      <p>আপনার নাম, ছবি, বিকাশ, নগদ, বাইনান্স ও হোয়াটসঅ্যাপ নাম্বার সেট করুন। আপনার পেমেন্ট ও যোগাযোগের তথ্য সম্পূর্ণ সুরক্ষিত থাকবে।</p>
+    </div>
+
+    <!-- Hero -->
+    <div class="card glow-card profile-hero mb20" id="profileHero"></div>
+
+    <!-- Privacy Guarantee Alert -->
+    <div class="card glow-card mb24" style="background:linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(13,18,34,0.7) 100%); border:1px solid rgba(6,182,212,0.3); border-radius:12px; padding:16px 20px;">
+      <div class="flex ac gap12">
+        <span style="font-size:26px;">🛡️</span>
+        <div>
+          <h4 style="font-size:15px; font-weight:800; color:#fff; margin:0 0 4px;">১০০% ব্যক্তিগত তথ্য সুরক্ষা (Strict Privacy Guarantee)</h4>
+          <p class="fs13 dim" style="margin:0; line-height:1.5;">
+            আপনার <b>বিকাশ (bKash)</b>, <b>নগদ (Nagad)</b>, <b>বাইনান্স (Binance)</b> ও <b>হোয়াটসঅ্যাপ (WhatsApp)</b> নাম্বার সম্পূর্ণ সুরক্ষিত ও গোপন থাকবে। সাধারণ কোনো ইউজার বা বায়ার আপনার এসব তথ্যে অ্যাক্সেস পাবে না—মার্কেটপ্লেসে অন্যরা শুধুমাত্র আপনার <b>নাম (Name)</b> ও <b>প্রোফাইল ছবি (Pic)</b> দেখতে পাবে।
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <!-- Profile & Payment Information Card -->
+        <div class="card glow-card mb24">
+          <div class="card__head">
+            <div>
+              <h3>Profile & Payment Details</h3>
+              <div class="sub">সকল তথ্য নিচে সরাসরি লিখে সেভ করুন (Only Name & Pic are public)</div>
+            </div>
+          </div>
+          <div class="card__body">
+            <form id="profileForm" style="display:grid; gap:16px;">
+              <!-- 1. Name & Username (Public) -->
+              <div style="background:rgba(255,255,255,0.02); padding:14px; border-radius:10px; border:1px solid var(--border);">
+                <div class="flex ac gap6 mb10">
+                  <span class="badge green no-dot">🌐 পাবলিক তথ্য (অন্যান্য ইউজাররা দেখতে পাবে)</span>
+                </div>
+                <div class="form-grid">
+                  <div class="field">
+                    <label class="fs13 fw700" style="color:var(--text);">Full Name (আপনার নাম) <span class="req">*</span></label>
+                    <input class="input" id="fName" name="name" placeholder="যেমন: Ratan Majumder" required>
+                  </div>
+                  <div class="field">
+                    <label class="fs13 fw700" style="color:var(--text);">Username (ইউজারনেম)</label>
+                    <input class="input" id="fUser" name="username" placeholder="যেমন: ratan_ai">
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. Private Financial & Contact Details (Protected) -->
+              <div style="background:rgba(255,30,66,0.03); padding:14px; border-radius:10px; border:1px solid rgba(255,30,66,0.2);">
+                <div class="flex ac gap6 mb10">
+                  <span class="badge red no-dot">🔒 গোপন পেমেন্ট ও কন্টাক্ট (Only You & Admin for Payout)</span>
+                </div>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
+                  <div class="field">
+                    <label class="fs13 fw700 flex ac gap6" style="color:var(--text);"><img src="assets/bkash.png" style="width:20px; height:20px; object-fit:contain;" alt=""> bKash Number (বিকাশ)</label>
+                    <input class="input mt4" id="fBkash" name="bkash" placeholder="01XXXXXXXXX">
+                  </div>
+                  <div class="field">
+                    <label class="fs13 fw700 flex ac gap6" style="color:var(--text);"><img src="assets/nagad.png" style="width:20px; height:20px; object-fit:contain;" alt=""> Nagad Number (নগদ)</label>
+                    <input class="input mt4" id="fNagad" name="nagad" placeholder="01XXXXXXXXX">
+                  </div>
+                  <div class="field">
+                    <label class="fs13 fw700 flex ac gap6" style="color:var(--text);"><img src="assets/binance.png" style="width:20px; height:20px; object-fit:contain;" alt=""> Binance Pay ID (বাইনান্স)</label>
+                    <input class="input mt4" id="fBinance" name="binance" placeholder="Pay ID বা ইমেইল"></label>
+                  </div>
+                  <div class="field">
+                    <label class="fs13 fw700" style="color:var(--text);"><span class="logo-badge wa" style="font-size:10px; padding:2px 5px; margin-right:4px;">W</span> WhatsApp Number</label>
+                    <input class="input mt4" id="fWa" name="whatsapp" placeholder="01XXXXXXXXX">
+                  </div>
+                </div>
+                <p class="fs12 dim mt8" style="margin-bottom:0;">
+                  উইথড্র করার সময় এই অ্যাকাউন্টগুলোতে এডমিন টাকা পাঠিয়ে ট্রানজেকশন কনফার্ম করবেন।
+                </p>
+              </div>
+
+              <div class="flex jb ac mt8" style="flex-wrap:wrap; gap:10px;">
+                <span class="dim fs12">✓ পরিবর্তনসমূহ স্বয়ংক্রিয়ভাবে লোকালস্টোরে সেভ হবে।</span>
+                <button type="submit" class="btn btn-primary" id="saveProfileBtn" style="padding:10px 24px; font-weight:800;">
+                  💾 তথ্য সেভ করুন (Save Details)
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews -->
+      <div>
+        <div class="card glow-card">
+          <div class="card__head">
+            <div>
+              <h3>Reviews & Rating About Me</h3>
+              <div class="sub">Verified feedback from buyers & sellers</div>
+            </div>
+          </div>
+          <div class="card__body">
+            <div class="review-summary" id="myReviewSummary"></div>
+            <div class="review-list" id="myReviewList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/profile.js"></script>
+</body>
+</html>

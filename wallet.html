@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallet (Deposit & Withdraw) — RTN BACKUP GROUP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/meta-ai-logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff1e42">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body data-page="wallet">
+
+  <div class="page" style="max-width:980px">
+    <div class="page-head row">
+      <div>
+        <h1>Escrow Wallet (DP & Payouts)</h1>
+        <p>Deposit balance before ordering. Minimum deposit is <b>৳50</b>, Minimum withdrawal is <b>৳50</b>.</p>
+      </div>
+      <a href="https://wa.me/8801609166109" target="_blank" class="btn btn-outline" style="border-color:var(--green); color:var(--green);">
+        💬 Admin WhatsApp: 01609166109
+      </a>
+    </div>
+
+    <!-- Wallet Balance Hero -->
+    <div class="card glow-card wallet-hero mb24" id="walletHero"></div>
+
+    <!-- Tabs: Deposit, Withdraw, History -->
+    <div class="tabs" id="walletTabs">
+      <button class="tab on" data-tab="deposit">⬇️ Add Deposit (DP) — Min ৳50</button>
+      <button class="tab" data-tab="withdraw">⬆️ Withdraw Balance — Min ৳50</button>
+      <button class="tab" data-tab="history">🧾 Recent Activity</button>
+    </div>
+
+    <!-- DEPOSIT PANEL -->
+    <div class="card glow-card wpanel" id="panel-deposit">
+      <div class="card__head">
+        <div>
+          <h3>Deposit (DP) to Wallet</h3>
+          <div class="sub">Send money to our official bKash or Nagad number, then submit your TrxID below</div>
+        </div>
+        <span class="badge green no-dot">Instant Approval</span>
+      </div>
+      <div class="card__body">
+        <div class="field">
+          <label>1. Select Payment Method</label>
+          <div class="method-grid" id="depMethods"></div>
+        </div>
+
+        <div class="platform-no mt16" id="platformNo"></div>
+
+        <div class="field mt16">
+          <label>2. Deposit Amount (৳) <span class="req">* (Minimum ৳50)</span></label>
+          <div class="input-group">
+            <span class="prefix">৳</span>
+            <input class="input" id="depAmount" type="number" min="50" step="5" placeholder="Minimum ৳50">
+          </div>
+          <div class="amount-presets mt8" id="depPresets" style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn btn-ghost btn-sm" data-v="50" style="background:var(--surface-2); border:1px solid var(--border)">৳50</button>
+            <button class="btn btn-ghost btn-sm" data-v="100" style="background:var(--surface-2); border:1px solid var(--border)">৳100</button>
+            <button class="btn btn-ghost btn-sm" data-v="200" style="background:var(--surface-2); border:1px solid var(--border)">৳200</button>
+            <button class="btn btn-ghost btn-sm" data-v="500" style="background:var(--surface-2); border:1px solid var(--border)">৳500</button>
+            <button class="btn btn-ghost btn-sm" data-v="1000" style="background:var(--surface-2); border:1px solid var(--border)">৳1,000</button>
+            <button class="btn btn-ghost btn-sm" data-v="2500" style="background:var(--surface-2); border:1px solid var(--border)">৳2,500</button>
+          </div>
+        </div>
+
+        <div class="field mt16">
+          <label>3. Transaction ID (TrxID) <span class="req">*</span></label>
+          <input class="input" id="depRef" placeholder="e.g. BL99K2A1X or paste the TrxID from bKash/Nagad SMS" required>
+          <div class="hint">After sending money via Send Money / Cash-in, copy the TrxID and paste it here.</div>
+        </div>
+
+        <div class="field mt16">
+          <label>Sender Mobile Number used</label>
+          <input class="input" id="depSender" placeholder="e.g. 01712-345678">
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block mt24" id="depBtn" style="font-size:15px; font-weight:800;">
+          Submit Deposit for Approval
+        </button>
+      </div>
+    </div>
+
+    <!-- WITHDRAW PANEL -->
+    <div class="card glow-card wpanel" id="panel-withdraw" hidden>
+      <div class="card__head">
+        <div>
+          <h3>Withdraw Earnings / Deposit</h3>
+          <div class="sub">Cash out to your bKash, Nagad or Binance account (Minimum ৳50)</div>
+        </div>
+      </div>
+      <div class="card__body">
+        <div class="field">
+          <label>1. Select Payout Method</label>
+          <div class="method-grid" id="wdMethods"></div>
+        </div>
+
+        <div class="field mt16">
+          <label>2. Withdrawal Amount (৳) <span class="req">* (Minimum ৳50)</span></label>
+          <div class="input-group">
+            <span class="prefix">৳</span>
+            <input class="input" id="wdAmount" type="number" min="50" step="5" placeholder="Minimum ৳50">
+          </div>
+          <div class="hint" id="wdHint">Minimum withdrawal is ৳50. Admin processes payouts manually within 1–4 hours.</div>
+        </div>
+
+        <div class="field mt16">
+          <label>3. Payout Destination Number / Address</label>
+          <input class="input mono" id="wdTargetNumber" placeholder="e.g. 01712-345678">
+          <div class="hint">Defaults to your saved profile number. You can change it here.</div>
+        </div>
+
+        <div class="kv-row mt16" id="wdCalc" style="background:var(--surface-2); padding:14px; border-radius:8px; border:1px solid var(--border);"></div>
+
+        <button class="btn btn-primary btn-lg btn-block mt24" id="wdBtn" style="background:linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); font-weight:800;">
+          Submit Withdrawal Request
+        </button>
+      </div>
+    </div>
+
+    <!-- HISTORY PANEL -->
+    <div class="card glow-card wpanel" id="panel-history" hidden>
+      <div class="card__head">
+        <div><h3>Recent Wallet Ledger</h3></div>
+        <a href="transactions.html" class="btn btn-ghost btn-sm">Full Ledger →</a>
+      </div>
+      <div class="table-wrap"><table class="data" id="histTable"></table></div>
+    </div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/wallet.js"></script>
+</body>
+</html>

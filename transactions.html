@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transactions Ledger — RTN BACKUP GROUP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/meta-ai-logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff1e42">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body data-page="transactions">
+
+  <div class="page">
+    <div class="page-head row">
+      <div>
+        <h1>Transactions & Escrow History</h1>
+        <p>Immutable log of deposits (bKash/Nagad), withdrawals, purchases and sales.</p>
+      </div>
+      <a href="wallet.html" class="btn btn-primary">💼 Open Wallet (Min ৳50)</a>
+    </div>
+
+    <div class="stats-grid" id="txnStats"></div>
+
+    <div class="filter-bar" id="txnFilter">
+      <span class="pill on" data-t="">All Transactions</span>
+      <span class="pill" data-t="deposit">Deposits</span>
+      <span class="pill" data-t="withdraw">Withdrawals</span>
+      <span class="pill" data-t="purchase">Purchases</span>
+      <span class="pill" data-t="sale">Sales</span>
+    </div>
+
+    <div class="card glow-card">
+      <div class="table-wrap"><table class="data" id="txnTable"></table></div>
+    </div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/transactions.js"></script>
+</body>
+</html>

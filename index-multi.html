@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RTN BACKUP GROUP — Meta AI Buy & Sell Marketplace</title>
+  <meta name="description" content="Official RTN Backup Group Platform. Buy & Sell Meta AI Accounts (0.45, 0.30 No Replace, 0.50 Horjin), Facebook Aged IDs, Bulk Logs & Digital Assets. bKash 01609166109 & Nagad 01620576996.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/meta-ai-logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff1e42">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body data-page="marketplace">
+
+  <div class="page">
+    <!-- Hero Banner with 3D Meta AI Orb & Live Rates -->
+    <section class="hero card glow-card" id="hero">
+      <div class="hero-text">
+        <div class="flex ac gap8 mb16" style="flex-wrap:wrap">
+          <span class="delivery-live-tag"><span class="delivery-live-dot"></span> ⚡ INSTANT AUTO-DELIVERY</span>
+          <span class="badge red no-dot">🔥 RTN BACKUP GROUP OFFICIAL</span>
+          <span class="badge green no-dot">🛡️ 100% Escrow Protected</span>
+          <span class="badge cyan no-dot">⚡ Min DP/Withdraw ৳50</span>
+        </div>
+        <h1>Meta AI Buy & Sell Exchange<br><span class="grad">Fast, Secure & Automated</span></h1>
+        <p>Buy & sell verified Meta AI accounts, fresh session cookies, bulk Excel logs, and digital software. Instant auto-delivery after purchase. Payments via <b>bKash (01609166109)</b>, <b>Nagad (01620576996)</b> & <b>Binance Pay (1271861063)</b>.</p>
+        
+        <div class="hero-cta">
+          <a href="wallet.html?tab=deposit" class="btn btn-meta btn-lg">💰 Deposit (DP) First</a>
+          <a href="add-product.html" class="btn btn-outline btn-lg">＋ Add Product (Seller)</a>
+          <a href="https://wa.me/8801609166109" target="_blank" class="btn btn-outline btn-lg hero-wa-btn">
+            💬 WhatsApp: 01609166109
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div><b style="color:var(--accent);">৳0.45</b><span>👑 Admin Meta (.45 Exclusive)</span></div>
+          <div><b>৳0.45</b><span>Meta AI Horjin (.45 Original)</span></div>
+          <div><b>৳0.40</b><span>Meta AI (.40 With Replace)</span></div>
+          <div><b>৳0.30</b><span>Meta AI (.30 No Replace)</span></div>
+          <div><b>৳50</b><span>Min DP / Withdraw</span></div>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <!-- Floating 3D Animated Meta AI Orb Centerpiece -->
+        <div class="hero-orb-feature" style="text-align:center; margin-bottom:4px;">
+          <div class="meta-orb-container">
+            <div class="meta-orb-aura"></div>
+            <img src="assets/meta-ai-logo.png" alt="Meta AI 3D Orb" class="meta-orb-img" title="Meta AI Buy & Sell">
+          </div>
+          <div class="flex jc ac gap8 mt8">
+            <span class="badge violet no-dot" style="font-size:11px; padding:3px 10px;">✨ 3D Meta AI Verified</span>
+            <span class="badge green no-dot" style="font-size:11px; padding:3px 10px;">✓ 0s Delivery Pool</span>
+          </div>
+        </div>
+
+        <div class="h-card hc1">
+          <div class="flex ac gap8">
+            <img src="assets/meta-ai-logo.png" style="width:22px; height:22px; object-fit:contain;" alt="">
+            <div><b>Meta AI .40</b><div class="dim fs12">With Replace (২৪ ঘণ্টা ফুল রিপ্লেস)</div></div>
+          </div>
+          <span class="badge green no-dot">৳0.40 /unit</span>
+        </div>
+
+        <div class="h-card hc2">
+          <div class="flex ac gap8">
+            <span style="font-size:20px">👑</span>
+            <div><b>Admin Meta .45</b><div class="dim fs12">Admin Exclusive (ক্লিন রেসিডেন্সিয়াল আইপি)</div></div>
+          </div>
+          <span class="badge pink no-dot">৳0.45 /unit</span>
+        </div>
+
+        <div class="h-card hc3">
+          <div class="flex ac gap8">
+            <span style="font-size:20px">⚡</span>
+            <div><b>Meta AI .30</b><div class="dim fs12">No Replace (নো রিপ্লেস নো কমপ্লেন)</div></div>
+          </div>
+          <span class="badge red no-dot">৳0.30 /unit</span>
+        </div>
+
+        <div class="h-card hc4">
+          <div class="flex ac gap8">
+            <span style="font-size:20px">⭐</span>
+            <div><b>Meta AI Admin .50</b><div class="dim fs12">Admin Official (Horjin Clean IP)</div></div>
+          </div>
+          <span class="badge cyan no-dot">৳0.50 /unit</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marketplace Catalog -->
+    <div class="page-head mt24">
+      <div class="flex ac jb" style="flex-wrap:wrap; gap:14px;">
+        <div>
+          <div class="flex ac gap8 mb6">
+            <span class="badge green no-dot">✓ উন্মুক্ত মার্কেটপ্লেস</span>
+            <span class="badge blue no-dot">⚡ সরাসরি লাইভ</span>
+          </div>
+          <h1 style="font-size:26px;">Verified Marketplace Catalog</h1>
+          <p>অ্যাডমিন ও গ্রুপ মেম্বারদের লাইভ Meta AI স্টক — যেকেউ নিজের শপ নেম দিয়ে অ্যাকাউন্ট যুক্ত করে সরাসরি সেল করতে পারবেন।</p>
+        </div>
+        <div class="flex ac gap10">
+          <a href="add-product.html" class="btn btn-meta" style="padding:12px 22px; font-weight:800; font-size:14.5px; box-shadow:0 4px 18px rgba(255,30,66,0.35); text-decoration:none;">
+            ➕ পণ্য বিক্রি করুন (Add Your Product)
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Filter Bar (Admin-set categories) -->
+    <div class="filter-bar" id="catBar">
+      <span class="pill on" data-cat="">All Categories</span>
+    </div>
+
+    <!-- Sorting & Counter -->
+    <div class="flex ac jb mb16" style="flex-wrap:wrap; gap:12px;">
+      <div class="tabs" style="border:none; margin:0;" id="sortTabs">
+        <button class="tab on" data-sort="new">Newest Listings</button>
+        <button class="tab" data-sort="price-asc">Price: Low → High</button>
+        <button class="tab" data-sort="price-desc">Price: High → Low</button>
+        <button class="tab" data-sort="rating">Top Rated Sellers</button>
+      </div>
+      <span class="dim fs13" id="resultCount">Loading products…</span>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" id="catalog"></div>
+
+    <!-- Empty State -->
+    <div class="empty" id="emptyState" hidden style="padding:48px 20px; text-align:center;">
+      <div class="e-ico" style="font-size:48px; margin-bottom:12px;">📦</div>
+      <h3 style="color:#fff; font-size:20px; font-weight:800; margin-bottom:8px;">মার্কেটপ্লেসে এখনো কোনো পণ্য যোগ করা হয়নি</h3>
+      <p class="dim fs14" style="max-width:480px; margin:0 auto 18px;">সেলার হিসেবে আপনি প্রথম স্টক বা পণ্য যোগ করুন এবং বায়ারদের কাছে সরাসরি অটো-ডেলিভারিতে বিক্রি শুরু করুন।</p>
+      <a href="add-product.html" class="btn btn-meta" style="padding:10px 22px; font-weight:800; font-size:14px; text-decoration:none;">➕ প্রথম পণ্য যোগ করুন (Add Product)</a>
+    </div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/home.js"></script>
+</body>
+</html>

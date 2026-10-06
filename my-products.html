@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Listings & Stocks — RTN BACKUP GROUP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/meta-ai-logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff1e42">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body data-page="my-products">
+
+  <div class="page">
+    <div class="page-head row">
+      <div>
+        <h1>My Listings & Account Pools</h1>
+        <p>Monitor your products through the approval flow (Pending → Live) and track remaining stock.</p>
+      </div>
+      <div class="flex gap8">
+        <a href="add-product.html" class="btn btn-primary">＋ Add New Product (Excel)</a>
+      </div>
+    </div>
+
+    <div class="tabs" id="statusTabs">
+      <button class="tab on" data-status="all">All <span class="dim" id="cAll"></span></button>
+      <button class="tab" data-status="pending">⏳ Pending Admin <span class="dim" id="cPend"></span></button>
+      <button class="tab" data-status="live">✅ Live in Market <span class="dim" id="cLive"></span></button>
+      <button class="tab" data-status="rejected">❌ Rejected <span class="dim" id="cRej"></span></button>
+    </div>
+
+    <div id="productRows" style="display:flex; flex-direction:column; gap:14px;"></div>
+    <div class="empty" id="emptyRow" hidden>
+      <div class="e-ico">📦</div>
+      <h4>No listings found in this category</h4>
+      <p>Submit your first Meta AI or digital product batch for admin review.</p>
+      <a href="add-product.html" class="btn btn-primary mt16" style="display:inline-flex">＋ Add Product</a>
+    </div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/my-products.js"></script>
+</body>
+</html>
